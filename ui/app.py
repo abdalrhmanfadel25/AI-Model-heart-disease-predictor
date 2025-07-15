@@ -13,70 +13,6 @@ import joblib
 import os
 from pathlib import Path
 
-# --- Custom CSS for dark theme, glassmorphism, and animations ---
-with open(os.path.join(os.path.dirname(__file__), 'assets', 'style.css')) as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-# --- Page config ---
-st.set_page_config(
-    page_title="❤️ Heart Disease AI Predictor",
-    page_icon="❤️",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
-
-# --- Responsive device detection (mobile/tablet/desktop) ---
-if 'is_mobile' not in st.session_state or 'is_tablet' not in st.session_state:
-    import streamlit as st
-    import streamlit.components.v1 as components
-    st.session_state['is_mobile'] = False
-    st.session_state['is_tablet'] = False
-    # Use JS to detect screen width and set session state
-    components.html('''
-        <script>
-        const width = window.innerWidth;
-        if (width <= 600) {
-            window.parent.postMessage({is_mobile: true, is_tablet: false}, '*');
-        } else if (width <= 900) {
-            window.parent.postMessage({is_mobile: false, is_tablet: true}, '*');
-        } else {
-            window.parent.postMessage({is_mobile: false, is_tablet: false}, '*');
-        }
-        </script>
-    ''', height=0)
-    # Listen for the message in Streamlit
-    import streamlit_javascript as st_js
-    js_result = st_js.st_javascript(
-        """
-        window.addEventListener('message', (event) => {
-            if (event.data.is_mobile !== undefined) {
-                window.streamlitSend({is_mobile: event.data.is_mobile, is_tablet: event.data.is_tablet});
-            }
-        });
-        """
-    )
-    if js_result and 'is_mobile' in js_result:
-        st.session_state['is_mobile'] = js_result['is_mobile']
-        st.session_state['is_tablet'] = js_result['is_tablet']
-
-# --- Model loading (cache for performance) ---
-@st.cache_resource
-
-def load_model():
-    model_path = Path(__file__).parent.parent / 'models' / 'heart_disease_pipeline.pkl'
-    try:
-        with st.spinner('🚀 Loading AI model for heart disease prediction...'):
-            if not model_path.exists():
-                st.error("❌ Model file not found! Please ensure 'models/heart_disease_pipeline.pkl' exists.")
-                st.stop()
-            model = joblib.load(model_path)
-        return model
-    except Exception as e:
-        st.error(f"❌ Failed to load the prediction model: {e}\nPlease contact support or check the model file.")
-        st.stop()
-
-model = load_model()
-
 # --- Model input schema ---
 FEATURES = [
     ('age', 'Age (years)', 'slider', {'min_value': 18, 'max_value': 100, 'value': 50, 'step': 1, 'help': 'Your age in years'}),
@@ -107,24 +43,193 @@ NORMAL_RANGES = {
     'st_slope': '0 = Upsloping, 1 = Flat, 2 = Downsloping'
 }
 
-# --- Hero Section (new, enhanced) ---
+# --- Custom CSS for dark theme, glassmorphism, and animations ---
+with open(os.path.join(os.path.dirname(__file__), 'assets', 'style.css')) as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# --- Page config ---
+st.set_page_config(
+    page_title="❤️ Heart Disease AI Predictor",
+    page_icon="❤️",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+# --- Responsive device detection (mobile/tablet/desktop) ---
+# Instead of device detection, just use columns for desktop/tablet
+# (Removed duplicate input block here to avoid errors)
+
+# --- Model loading (cache for performance) ---
+@st.cache_resource
+
+def load_model():
+    model_path = Path(__file__).parent.parent / 'models' / 'heart_disease_pipeline.pkl'
+    try:
+        with st.spinner('🚀 Loading AI model for heart disease prediction...'):
+            if not model_path.exists():
+                st.error("❌ Model file not found! Please ensure 'models/heart_disease_pipeline.pkl' exists.")
+                st.stop()
+            model = joblib.load(model_path)
+        return model
+    except Exception as e:
+        st.error(f"❌ Failed to load the prediction model: {e}\nPlease contact support or check the model file.")
+        st.stop()
+
+model = load_model()
+
+# --- Hero Section (Enhanced Responsive + Gradient BG) ---
 st.markdown('''
-<div class="hero-section enhanced-hero">
-  <h1 class="hero-title"><span style="background:none;-webkit-background-clip:unset;-webkit-text-fill-color:unset;">🤖❤️</span> AI Heart Disease Predictor</h1>
-  <p class="hero-subtitle">Advanced Machine Learning for Cardiovascular Risk Assessment <span style="font-size:1.5rem;">🧠</span></p>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-number">92%</span>
-      <div class="stat-label">Accuracy <span style="font-size:1.2rem;">📊</span></div>
+<style>
+/* Animated gradient background for the whole app */
+body, .stApp {
+    background: linear-gradient(120deg, #232526 0%, #7f5af0 50%, #00e6fe 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+}
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+.hero-glass-card {
+    background: linear-gradient(135deg, rgba(127,90,240,0.35) 0%, rgba(0,230,254,0.22) 100%), rgba(36, 37, 46, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 2.5rem;
+    border: 1.5px solid rgba(127, 90, 240, 0.18);
+    padding: 2.5rem 3.5rem 2rem 3.5rem;
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    transition: box-shadow 0.3s;
+}
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 16px #7f5af0;
+}
+.hero-subtitle {
+    font-size: 1.35rem;
+    color: #cfcfff;
+    font-weight: 400;
+    margin-bottom: 2.2rem;
+}
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+.stat-item {
+    background: rgba(127, 90, 240, 0.13);
+    border-radius: 1.2rem;
+    padding: 1.1rem 2.1rem;
+    box-shadow: 0 2px 16px #7f5af0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    border: 1.5px solid rgba(127, 90, 240, 0.18);
+    transition: transform 0.2s;
+}
+.stat-item:hover {
+    transform: scale(1.07) rotate(-2deg);
+    box-shadow: 0 4px 32px #7f5af0;
+}
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffe066;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 2px 8px #7f5af0;
+}
+.stat-label {
+    font-size: 1.05rem;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.hero-wave {
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+    overflow: hidden;
+}
+.hero-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 700px) {
+  .hero-glass-card {
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+    max-width: 98vw;
+    border-radius: 1.2rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .stat-item {
+    min-width: 80px;
+    padding: 0.7rem 1.1rem;
+  }
+}
+</style>
+<div class="hero-section">
+  <div class="hero-glass-card">
+    <h1 class="hero-title">❤️🤖AI Heart Disease Predictor</h1>
+    <p class="hero-subtitle">Advanced Machine Learning for Cardiovascular Risk Assessment<br/>
+      <span style="color:#7f5af0; font-weight:600;">Instant. Private. Personalized.</span>
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">92%</span>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">97%</span>
+        <div class="stat-label">AUC Score</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">11</span>
+        <div class="stat-label">Features</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-number">97%</span>
-      <div class="stat-label">AUC Score <span style="font-size:1.2rem;">📈</span></div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">11</span>
-      <div class="stat-label">Features <span style="font-size:1.2rem;">🧬</span></div>
-    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C360,90 1080,-30 1440,30 L1440,70 L0,70 Z" fill="#7f5af0" fill-opacity="0.18"></path>
+      <path d="M0,50 C400,0 1040,100 1440,50 L1440,70 L0,70 Z" fill="#00e6fe" fill-opacity="0.10"></path>
+    </svg>
   </div>
 </div>
 ''', unsafe_allow_html=True)
