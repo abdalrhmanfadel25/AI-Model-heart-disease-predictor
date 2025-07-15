@@ -86,7 +86,7 @@ model = load_model()
 # --- Enhanced Hero Section with Stunning New Color Palette ---
 st.markdown('''
 <style>
-/* Enhanced animated gradient background with vibrant colors - now scoped only to hero section */
+/* Enhanced animated gradient background with vibrant colors - scoped to hero section only */
 .hero-section {
     background: linear-gradient(135deg, 
         #0a0a0a 0%, 
@@ -109,7 +109,6 @@ st.markdown('''
     z-index: 2;
     overflow: hidden;
 }
-
 @keyframes gradientFlow {
     0% { background-position: 0% 50%; }
     20% { background-position: 100% 50%; }
@@ -118,7 +117,6 @@ st.markdown('''
     80% { background-position: 50% 0%; }
     100% { background-position: 0% 50%; }
 }
-
 /* Floating particles background with new colors */
 .hero-section::before {
     content: '';
@@ -138,15 +136,12 @@ st.markdown('''
     pointer-events: none;
     z-index: 1;
 }
-
 @keyframes particleFloat {
     0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
     33% { transform: translateY(-30px) rotate(120deg); opacity: 1; }
     66% { transform: translateY(-10px) rotate(240deg); opacity: 0.9; }
     100% { transform: translateY(0px) rotate(360deg); opacity: 0.8; }
 }
-
-/* Enhanced glassmorphism card with vibrant colors */
 .hero-glass-card {
     background: linear-gradient(135deg, 
         rgba(255,107,107,0.15) 0%, 
@@ -159,13 +154,6 @@ st.markdown('''
     -webkit-backdrop-filter: blur(30px);
     border-radius: 3rem;
     border: none;
-    border-image: linear-gradient(135deg, 
-        rgba(255,107,107,0.5) 0%, 
-        rgba(138,43,226,0.6) 25%, 
-        rgba(17,153,142,0.5) 50%, 
-        rgba(56,239,125,0.4) 75%, 
-        rgba(255,193,7,0.5) 100%
-    ) 1;
     padding: 3.5rem 4.5rem 3rem 4.5rem;
     text-align: center;
     max-width: 800px;
@@ -179,37 +167,29 @@ st.markdown('''
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     animation: cardGlow 8s ease-in-out infinite alternate;
 }
-
 @keyframes cardGlow {
     0% {
-        box-shadow: 
-            0 10px 40px rgba(255,107,107,0.25),
-            0 20px 80px rgba(138,43,226,0.2),
-            0 30px 120px rgba(17,153,142,0.15);
+        box-shadow: 0 10px 40px rgba(255,107,107,0.25),
+                    0 20px 80px rgba(138,43,226,0.2),
+                    0 30px 120px rgba(17,153,142,0.15);
     }
     50% {
-        box-shadow: 
-            0 15px 60px rgba(56,239,125,0.3),
-            0 25px 100px rgba(255,193,7,0.25),
-            0 35px 140px rgba(255,107,107,0.2);
+        box-shadow: 0 15px 60px rgba(56,239,125,0.3),
+                    0 25px 100px rgba(255,193,7,0.25),
+                    0 35px 140px rgba(255,107,107,0.2);
     }
     100% {
-        box-shadow: 
-            0 20px 80px rgba(138,43,226,0.35),
-            0 30px 120px rgba(17,153,142,0.25),
-            0 40px 160px rgba(56,239,125,0.2);
+        box-shadow: 0 20px 80px rgba(138,43,226,0.35),
+                    0 30px 120px rgba(17,153,142,0.25),
+                    0 40px 160px rgba(56,239,125,0.2);
     }
 }
-
 .hero-glass-card:hover {
     transform: translateY(-8px) scale(1.03);
-    box-shadow: 
-        0 25px 100px rgba(255,107,107,0.4),
-        0 35px 140px rgba(138,43,226,0.3),
-        0 45px 180px rgba(17,153,142,0.25);
+    box-shadow: 0 25px 100px rgba(255,107,107,0.4),
+                0 35px 140px rgba(138,43,226,0.3),
+                0 45px 180px rgba(17,153,142,0.25);
 }
-
-/* Enhanced typography with vibrant gradients */
 .hero-title {
     font-size: 3.8rem;
     font-weight: 900;
@@ -231,12 +211,10 @@ st.markdown('''
     text-shadow: 0 5px 25px rgba(255,107,107,0.4);
     position: relative;
 }
-
 @keyframes textGradientMove {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
-
 .hero-title::after {
     content: '';
     position: absolute;
@@ -255,12 +233,10 @@ st.markdown('''
     border-radius: 2px;
     animation: underlineGlow 4s ease-in-out infinite;
 }
-
 @keyframes underlineGlow {
     0%, 100% { opacity: 0.7; width: 100px; }
     50% { opacity: 1; width: 150px; }
 }
-
 .hero-subtitle {
     font-size: 1.5rem;
     background: linear-gradient(135deg, 
@@ -278,12 +254,10 @@ st.markdown('''
     text-shadow: 0 3px 15px rgba(255,107,107,0.2);
     animation: subtitleSlide 2.5s ease-out 0.8s both;
 }
-
 @keyframes subtitleSlide {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
 }
-
 .hero-stats {
     display: flex;
     justify-content: center;
@@ -291,13 +265,10 @@ st.markdown('''
     margin-bottom: 2.5rem;
     animation: statsReveal 2.5s ease-out 1.2s both;
 }
-
 @keyframes statsReveal {
     0% { opacity: 0; transform: translateY(40px); }
     100% { opacity: 1; transform: translateY(0); }
 }
-
-/* Enhanced stat cards with vibrant colors */
 .stat-item {
     background: linear-gradient(135deg, 
         rgba(255,107,107,0.2) 0%, 
@@ -313,11 +284,6 @@ st.markdown('''
     align-items: center;
     min-width: 140px;
     border: none;
-    border-image: linear-gradient(135deg, 
-        rgba(255,107,107,0.4) 0%, 
-        rgba(138,43,226,0.5) 50%, 
-        rgba(17,153,142,0.4) 100%
-    ) 1;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: hidden;
@@ -326,236 +292,11 @@ st.markdown('''
                 0 8px 48px 0 rgba(56,239,125,0.10),
                 0 0 32px 0 rgba(255,255,255,0.10) inset;
 }
-
-.stat-item::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, 
-        transparent, 
-        rgba(255,255,255,0.15), 
-        transparent
-    );
-    transform: rotate(45deg);
-    transition: all 0.8s;
-    opacity: 0;
-}
-
-.stat-item:hover::before {
-    animation: shimmer 0.8s ease-in-out;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
-}
-
 .stat-item:hover {
     transform: translateY(-12px) scale(1.1);
     box-shadow: 0 12px 48px 0 rgba(255,107,107,0.18),
                 0 24px 96px 0 rgba(138,43,226,0.15),
                 0 0 48px 0 rgba(255,255,255,0.12) inset;
-    border-image: linear-gradient(135deg, 
-        rgba(56,239,125,0.6) 0%, 
-        rgba(255,193,7,0.7) 50%, 
-        rgba(255,107,107,0.6) 100%
-    ) 1;
-}
-
-.stat-item:nth-child(1) { 
-    animation-delay: 1.4s;
-    background: linear-gradient(135deg, 
-        rgba(255,107,107,0.25) 0%, 
-        rgba(255,193,7,0.2) 100%
-    );
-}
-.stat-item:nth-child(2) { 
-    animation-delay: 1.6s;
-    background: linear-gradient(135deg, 
-        rgba(138,43,226,0.25) 0%, 
-        rgba(17,153,142,0.2) 100%
-    );
-}
-.stat-item:nth-child(3) { 
-    animation-delay: 1.8s;
-    background: linear-gradient(135deg, 
-        rgba(56,239,125,0.25) 0%, 
-        rgba(255,107,107,0.2) 100%
-    );
-}
-
-.stat-number {
-    font-size: 2.8rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, 
-        #ffd93d 0%, 
-        #ff6b6b 30%, 
-        #6bcf7f 60%, 
-        #4d9de0 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 4px 20px rgba(255,193,7,0.3);
-    animation: numberCount 2.5s ease-out 2s both;
-}
-
-@keyframes numberCount {
-    0% { opacity: 0; transform: scale(0.3) rotate(180deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
-}
-
-.stat-label {
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, 
-        #ffffff 0%, 
-        #ffd93d 50%, 
-        #6bcf7f 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: 0 2px 10px rgba(255,255,255,0.1);
-}
-
-/* Enhanced wave animation with vibrant colors */
-.hero-wave {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 120px;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.hero-wave svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    animation: waveMove 10s ease-in-out infinite;
-}
-
-@keyframes waveMove {
-    0%, 100% { transform: translateX(0) scaleY(1); }
-    25% { transform: translateX(-30px) scaleY(1.2); }
-    50% { transform: translateX(0) scaleY(0.8); }
-    75% { transform: translateX(30px) scaleY(1.1); }
-}
-
-/* Pulsing dots decoration with new colors */
-.hero-glass-card::before {
-    content: '';
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    border-radius: 50%;
-    animation: dotPulse 3s ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(255,107,107,0.6);
-}
-
-.hero-glass-card::after {
-    content: '';
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-    width: 8px;
-    height: 8px;
-    background: linear-gradient(45deg, #6bcf7f, #4d9de0);
-    border-radius: 50%;
-    animation: dotPulse 3s ease-in-out infinite 1.5s;
-    box-shadow: 0 0 20px rgba(108,207,127,0.6);
-}
-
-@keyframes dotPulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(2); }
-}
-
-/* Enhanced responsive design */
-@media (max-width: 768px) {
-    .hero-section {
-        min-height: 420px;
-        margin-top: 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .hero-glass-card {
-        padding: 2.5rem 2rem;
-        max-width: 95vw;
-        border-radius: 2.5rem;
-        margin: 0 1rem;
-    }
-    
-    .hero-title {
-        font-size: 2.8rem;
-        letter-spacing: 1.5px;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 2.2rem;
-    }
-    
-    .hero-stats {
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-    }
-    
-    .stat-item {
-        min-width: 220px;
-        padding: 1.5rem 2.5rem;
-    }
-    
-    .stat-number {
-        font-size: 2.3rem;
-    }
-    
-    .stat-label {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2.2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.1rem;
-    }
-    
-    .hero-glass-card {
-        padding: 2rem 1.5rem;
-    }
-    
-    .stat-item {
-        min-width: 180px;
-        padding: 1.2rem 2rem;
-    }
-}
-
-/* Loading animation for initial render */
-.hero-section {
-    animation: heroFadeIn 2.5s ease-out;
-}
-
-@keyframes heroFadeIn {
-    0% { opacity: 0; transform: translateY(60px); }
-    100% { opacity: 1; transform: translateY(0); }
 }
 </style>
 
