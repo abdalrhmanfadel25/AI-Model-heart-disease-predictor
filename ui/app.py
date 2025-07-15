@@ -83,170 +83,506 @@ def load_model():
 model = load_model()
 
 # --- Hero Section (Enhanced Responsive + Gradient BG) ---
+# --- Enhanced Hero Section with Stunning New Color Palette ---
 st.markdown('''
 <style>
-/* Animated gradient background for the whole app */
-body, .stApp {
-    background: linear-gradient(120deg, #232526 0%, #7f5af0 50%, #00e6fe 100%);
-    background-size: 200% 200%;
-    animation: gradientMove 8s ease-in-out infinite;
-}
-@keyframes gradientMove {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
+/* Enhanced animated gradient background with vibrant colors - now scoped only to hero section */
 .hero-section {
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #1a0d2e 20%, 
+        #2d1b69 40%, 
+        #11998e 60%, 
+        #38ef7d 80%, 
+        #ff6b6b 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease-in-out infinite;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 420px;
-    margin-top: 1.5rem;
-    margin-bottom: 2.5rem;
-    position: relative;
+    min-height: 520px;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
     z-index: 2;
+    overflow: hidden;
 }
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    20% { background-position: 100% 50%; }
+    40% { background-position: 100% 100%; }
+    60% { background-position: 0% 100%; }
+    80% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating particles background with new colors */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(3px 3px at 40px 60px, rgba(255,107,107,0.6), transparent),
+        radial-gradient(2px 2px at 90px 40px, rgba(56,239,125,0.5), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,193,7,0.5), transparent),
+        radial-gradient(1px 1px at 160px 30px, rgba(17,153,142,0.4), transparent),
+        radial-gradient(2px 2px at 200px 120px, rgba(138,43,226,0.4), transparent);
+    background-size: 220px 140px;
+    animation: particleFloat 25s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+    33% { transform: translateY(-30px) rotate(120deg); opacity: 1; }
+    66% { transform: translateY(-10px) rotate(240deg); opacity: 0.9; }
+    100% { transform: translateY(0px) rotate(360deg); opacity: 0.8; }
+}
+
+/* Enhanced glassmorphism card with vibrant colors */
 .hero-glass-card {
-    background: linear-gradient(135deg, rgba(127,90,240,0.35) 0%, rgba(0,230,254,0.22) 100%), rgba(36, 37, 46, 0.45);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 2.5rem;
-    border: 1.5px solid rgba(127, 90, 240, 0.18);
-    padding: 2.5rem 3.5rem 2rem 3.5rem;
+    background: linear-gradient(135deg, 
+        rgba(255,107,107,0.15) 0%, 
+        rgba(138,43,226,0.18) 25%, 
+        rgba(17,153,142,0.12) 50%, 
+        rgba(56,239,125,0.08) 75%, 
+        rgba(255,193,7,0.10) 100%
+    );
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 3rem;
+    border: none;
+    border-image: linear-gradient(135deg, 
+        rgba(255,107,107,0.5) 0%, 
+        rgba(138,43,226,0.6) 25%, 
+        rgba(17,153,142,0.5) 50%, 
+        rgba(56,239,125,0.4) 75%, 
+        rgba(255,193,7,0.5) 100%
+    ) 1;
+    padding: 3.5rem 4.5rem 3rem 4.5rem;
     text-align: center;
-    max-width: 650px;
+    max-width: 800px;
     margin: 0 auto;
     position: relative;
-    z-index: 2;
-    transition: box-shadow 0.3s;
+    z-index: 3;
+    box-shadow: 0 10px 40px 10px rgba(255,107,107,0.10),
+                0 20px 80px 0 rgba(138,43,226,0.10),
+                0 30px 120px 0 rgba(17,153,142,0.08),
+                0 0 60px 10px rgba(255,255,255,0.08) inset;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: cardGlow 8s ease-in-out infinite alternate;
 }
+
+@keyframes cardGlow {
+    0% {
+        box-shadow: 
+            0 10px 40px rgba(255,107,107,0.25),
+            0 20px 80px rgba(138,43,226,0.2),
+            0 30px 120px rgba(17,153,142,0.15);
+    }
+    50% {
+        box-shadow: 
+            0 15px 60px rgba(56,239,125,0.3),
+            0 25px 100px rgba(255,193,7,0.25),
+            0 35px 140px rgba(255,107,107,0.2);
+    }
+    100% {
+        box-shadow: 
+            0 20px 80px rgba(138,43,226,0.35),
+            0 30px 120px rgba(17,153,142,0.25),
+            0 40px 160px rgba(56,239,125,0.2);
+    }
+}
+
+.hero-glass-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 
+        0 25px 100px rgba(255,107,107,0.4),
+        0 35px 140px rgba(138,43,226,0.3),
+        0 45px 180px rgba(17,153,142,0.25);
+}
+
+/* Enhanced typography with vibrant gradients */
 .hero-title {
-    font-size: 3rem;
+    font-size: 3.8rem;
     font-weight: 900;
-    color: #fff;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 16px #7f5af0;
+    background: linear-gradient(135deg, 
+        #ff6b6b 0%, 
+        #ffd93d 20%, 
+        #6bcf7f 40%, 
+        #4d9de0 60%, 
+        #e15759 80%, 
+        #ff9a9e 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: textGradientMove 6s ease-in-out infinite;
+    letter-spacing: 2.5px;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 5px 25px rgba(255,107,107,0.4);
+    position: relative;
 }
+
+@keyframes textGradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        #ff6b6b 0%, 
+        #ffd93d 25%, 
+        #6bcf7f 50%, 
+        #4d9de0 75%, 
+        #e15759 100%
+    );
+    border-radius: 2px;
+    animation: underlineGlow 4s ease-in-out infinite;
+}
+
+@keyframes underlineGlow {
+    0%, 100% { opacity: 0.7; width: 100px; }
+    50% { opacity: 1; width: 150px; }
+}
+
 .hero-subtitle {
-    font-size: 1.35rem;
-    color: #cfcfff;
-    font-weight: 400;
-    margin-bottom: 2.2rem;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, 
+        #ffffff 0%, 
+        #ffd93d 30%, 
+        #6bcf7f 60%, 
+        #4d9de0 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 500;
+    margin-bottom: 2.8rem;
+    line-height: 1.7;
+    text-shadow: 0 3px 15px rgba(255,107,107,0.2);
+    animation: subtitleSlide 2.5s ease-out 0.8s both;
 }
+
+@keyframes subtitleSlide {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 2.2rem;
-    margin-bottom: 1.5rem;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    animation: statsReveal 2.5s ease-out 1.2s both;
 }
+
+@keyframes statsReveal {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhanced stat cards with vibrant colors */
 .stat-item {
-    background: rgba(127, 90, 240, 0.13);
-    border-radius: 1.2rem;
-    padding: 1.1rem 2.1rem;
-    box-shadow: 0 2px 16px #7f5af0;
+    background: linear-gradient(135deg, 
+        rgba(255,107,107,0.2) 0%, 
+        rgba(138,43,226,0.18) 25%, 
+        rgba(17,153,142,0.15) 50%, 
+        rgba(56,239,125,0.12) 75%, 
+        rgba(255,193,7,0.15) 100%
+    );
+    border-radius: 2rem;
+    padding: 2rem 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 100px;
-    border: 1.5px solid rgba(127, 90, 240, 0.18);
-    transition: transform 0.2s;
+    min-width: 140px;
+    border: none;
+    border-image: linear-gradient(135deg, 
+        rgba(255,107,107,0.4) 0%, 
+        rgba(138,43,226,0.5) 50%, 
+        rgba(17,153,142,0.4) 100%
+    ) 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 32px 0 rgba(127,90,240,0.13),
+                0 8px 48px 0 rgba(56,239,125,0.10),
+                0 0 32px 0 rgba(255,255,255,0.10) inset;
 }
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(255,255,255,0.15), 
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.8s;
+    opacity: 0;
+}
+
+.stat-item:hover::before {
+    animation: shimmer 0.8s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+}
+
 .stat-item:hover {
-    transform: scale(1.07) rotate(-2deg);
-    box-shadow: 0 4px 32px #7f5af0;
+    transform: translateY(-12px) scale(1.1);
+    box-shadow: 0 12px 48px 0 rgba(255,107,107,0.18),
+                0 24px 96px 0 rgba(138,43,226,0.15),
+                0 0 48px 0 rgba(255,255,255,0.12) inset;
+    border-image: linear-gradient(135deg, 
+        rgba(56,239,125,0.6) 0%, 
+        rgba(255,193,7,0.7) 50%, 
+        rgba(255,107,107,0.6) 100%
+    ) 1;
 }
+
+.stat-item:nth-child(1) { 
+    animation-delay: 1.4s;
+    background: linear-gradient(135deg, 
+        rgba(255,107,107,0.25) 0%, 
+        rgba(255,193,7,0.2) 100%
+    );
+}
+.stat-item:nth-child(2) { 
+    animation-delay: 1.6s;
+    background: linear-gradient(135deg, 
+        rgba(138,43,226,0.25) 0%, 
+        rgba(17,153,142,0.2) 100%
+    );
+}
+.stat-item:nth-child(3) { 
+    animation-delay: 1.8s;
+    background: linear-gradient(135deg, 
+        rgba(56,239,125,0.25) 0%, 
+        rgba(255,107,107,0.2) 100%
+    );
+}
+
 .stat-number {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #ffe066;
-    margin-bottom: 0.2rem;
-    text-shadow: 0 2px 8px #7f5af0;
+    font-size: 2.8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, 
+        #ffd93d 0%, 
+        #ff6b6b 30%, 
+        #6bcf7f 60%, 
+        #4d9de0 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 20px rgba(255,193,7,0.3);
+    animation: numberCount 2.5s ease-out 2s both;
 }
+
+@keyframes numberCount {
+    0% { opacity: 0; transform: scale(0.3) rotate(180deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
 .stat-label {
-    font-size: 1.05rem;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, 
+        #ffffff 0%, 
+        #ffd93d 50%, 
+        #6bcf7f 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.1);
 }
+
+/* Enhanced wave animation with vibrant colors */
 .hero-wave {
     position: absolute;
-    left: 0; right: 0; bottom: -1px;
+    left: 0;
+    right: 0;
+    bottom: -2px;
     width: 100%;
-    height: 70px;
+    height: 120px;
     z-index: 1;
     overflow: hidden;
 }
+
 .hero-wave svg {
     width: 100%;
     height: 100%;
     display: block;
+    animation: waveMove 10s ease-in-out infinite;
 }
 
-/* Responsive styles for mobile */
-@media (max-width: 700px) {
-  .hero-glass-card {
-    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
-    max-width: 98vw;
-    border-radius: 1.2rem;
-  }
-  .hero-title {
-    font-size: 2rem;
-  }
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  .hero-stats {
-    flex-direction: column;
-    gap: 1.1rem;
-  }
-  .stat-item {
-    min-width: 80px;
-    padding: 0.7rem 1.1rem;
-  }
+@keyframes waveMove {
+    0%, 100% { transform: translateX(0) scaleY(1); }
+    25% { transform: translateX(-30px) scaleY(1.2); }
+    50% { transform: translateX(0) scaleY(0.8); }
+    75% { transform: translateX(30px) scaleY(1.1); }
+}
+
+/* Pulsing dots decoration with new colors */
+.hero-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    border-radius: 50%;
+    animation: dotPulse 3s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(255,107,107,0.6);
+}
+
+.hero-glass-card::after {
+    content: '';
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #6bcf7f, #4d9de0);
+    border-radius: 50%;
+    animation: dotPulse 3s ease-in-out infinite 1.5s;
+    box-shadow: 0 0 20px rgba(108,207,127,0.6);
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(2); }
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 420px;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-glass-card {
+        padding: 2.5rem 2rem;
+        max-width: 95vw;
+        border-radius: 2.5rem;
+        margin: 0 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2.2rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .stat-item {
+        min-width: 220px;
+        padding: 1.5rem 2.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2.3rem;
+    }
+    
+    .stat-label {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-glass-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .stat-item {
+        min-width: 180px;
+        padding: 1.2rem 2rem;
+    }
+}
+
+/* Loading animation for initial render */
+.hero-section {
+    animation: heroFadeIn 2.5s ease-out;
+}
+
+@keyframes heroFadeIn {
+    0% { opacity: 0; transform: translateY(60px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 </style>
-<div class="hero-section">
-  <div class="hero-glass-card">
-    <h1 class="hero-title">❤️🤖AI Heart Disease Predictor</h1>
-    <p class="hero-subtitle">Advanced Machine Learning for Cardiovascular Risk Assessment<br/>
-      <span style="color:#7f5af0; font-weight:600;">Instant. Private. Personalized.</span>
-    </p>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number">92%</span>
-        <div class="stat-label">Accuracy</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">97%</span>
-        <div class="stat-label">AUC Score</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">11</span>
-        <div class="stat-label">Features</div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,30 C360,90 1080,-30 1440,30 L1440,70 L0,70 Z" fill="#7f5af0" fill-opacity="0.18"></path>
-      <path d="M0,50 C400,0 1040,100 1440,50 L1440,70 L0,70 Z" fill="#00e6fe" fill-opacity="0.10"></path>
-    </svg>
-  </div>
-</div>
-''', unsafe_allow_html=True)
 
-# --- Input Form ---
-# Enhanced: Responsive, professional, with left padding and improved titles
-st.markdown('''
-<div class="form-glass-card">
-  <div class="form-section-title">
-    <span style="font-size:2.2rem;">🔬🤖</span> AI Clinical Assessment
-  </div>
-  <div class="wave" style="height:40px;"></div>
+<div class="hero-section">
+    <div class="hero-glass-card">
+        <h1 class="hero-title">❤️🤖 AI Heart Disease Predictor</h1>
+        <p class="hero-subtitle">
+            Advanced Machine Learning for Cardiovascular Risk Assessment<br/>
+            <span style="background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 50%, #6bcf7f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight:700; text-shadow: 0 3px 15px rgba(255,107,107,0.3);">
+                🔮 Instant. 🔒 Private. 🎯 Personalized.
+            </span>
+        </p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">92%</span>
+                <div class="stat-label">Accuracy</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">97%</span>
+                <div class="stat-label">AUC Score</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">11</span>
+                <div class="stat-label">Features</div>
+            </div>
+        </div>
+    </div>
 </div>
 ''', unsafe_allow_html=True)
 
