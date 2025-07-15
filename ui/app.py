@@ -43,12 +43,14 @@ NORMAL_RANGES = {
     'st_slope': '0 = Upsloping, 1 = Flat, 2 = Downsloping'
 }
 
+
 # --- Custom CSS for dark theme, glassmorphism, and animations ---
 try:
     with open(os.path.join(os.path.dirname(__file__), 'assets', 'style.css')) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 except FileNotFoundError:
     pass  # or st.warning("Custom CSS file not found.")
+
 
 # --- Page config ---
 st.set_page_config(
